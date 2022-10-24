@@ -5,18 +5,41 @@
     <title>
         Homepage
     </title>
-    <script src='/../bundle.js'></script>
+    <script src='./bundle.js'></script>
 </head>
 
 <body>
     <script>
         window.onload = () => {
-            const Calculation = CalculationBundle.default
-            const calc = new Calculation()
-            calc.on('done', (operation) => {
-                console.log(`${operation} done successfully`);
-            })
-            console.log(calc.add(2, 3))
+            const ComplexityAnalyzer = TimeComplexityAnalysis.default
+            const bubbleSort = (inputArr, counter) => {
+                const len = inputArr.length;
+                for (let i = 0; i < len; i++) {
+                    for (let j = 0; j < len; j++) {
+                        if (counter)
+                            counter()
+                        if (inputArr[j] > inputArr[j + 1]) {
+                            const tmp = inputArr[j];
+                            inputArr[j] = inputArr[j + 1];
+                            inputArr[j + 1] = tmp;
+                        }
+                    }
+                }
+                return inputArr;
+            }
+
+            const iteration = 100
+            const analyzer = new ComplexityAnalyzer()
+            const counter = () => {
+                analyzer.counter()
+            }
+            for (let i = 0; i <= iteration; i++) {
+                analyzer.n = i
+                const input = ComplexityAnalyzer.generateArray(i, 10, 99)
+                const output = bubbleSort([...input], counter)
+            }
+            const benchmark = analyzer.findTimeComplexity('n^2')
+            console.log(benchmark);
         }
     </script>
 </body>

@@ -1,8 +1,8 @@
 {
-  "name": "time-complexity-analysys",
+  "name": "time-complexity-analysis",
   "version": "1.0.0",
   "main": "build/index.js",
-  "repository": "https://github.com/hi-imcodeman/time-complexity-analysys.git",
+  "repository": "https://github.com/hi-imcodeman/time-complexity-analysis.git",
   "author": "Asraf Ali <asraf.cse@gmail.com>",
   "license": "MIT",
   "scripts": {
