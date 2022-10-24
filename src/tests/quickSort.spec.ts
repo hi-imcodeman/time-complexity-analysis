@@ -1,6 +1,6 @@
 import ComplexityAnalyzer from '../index'
 
-function quickSort(arr, left, right, counter = null) {
+function quickSort(arr:number[], left:number, right:number, counter?:() => void) {
     const len = arr.length
     let pivot, partitionIndex;
 
@@ -16,7 +16,7 @@ function quickSort(arr, left, right, counter = null) {
     return arr;
 }
 
-function partition(arr, pivot, left, right, counter) {
+function partition(arr:number[], pivot:number, left:number, right:number, counter?:() => void) {
     const pivotValue = arr[pivot]
     let partitionIndex = left;
 
@@ -31,7 +31,7 @@ function partition(arr, pivot, left, right, counter) {
     swap(arr, right, partitionIndex);
     return partitionIndex;
 }
-function swap(arr, i, j) {
+function swap(arr:number[], i:number, j:number) {
     const temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
@@ -46,7 +46,7 @@ describe('Quick Sort', () => {
         for (let i = 0; i <= iteration; i++) {
             analyzer.n = i
             const input = ComplexityAnalyzer.generateArray(i, 1, 999)
-            const output = quickSort(JSON.parse(JSON.stringify(input)), 0, i - 1, counter)
+            const output = quickSort([...input], 0, i - 1, counter)
         }
         const benchmark = analyzer.findTimeComplexity('n^2')
         expect(benchmark.status).toBe('PASS')

@@ -1,6 +1,6 @@
 import ComplexityAnalyzer from '../index'
 
-function selectionSort(arr, counter = null) {
+function selectionSort(arr:number[], counter?:() => void) {
     let minIdx, temp
     const len = arr.length;
     for (let i = 0; i < len; i++) {
@@ -28,9 +28,9 @@ describe('Selection Sort', () => {
         for (let i = 0; i <= iteration; i++) {
             analyzer.n = i
             const input = ComplexityAnalyzer.generateArray(i, 10, 99)
-            const output = selectionSort(JSON.parse(JSON.stringify(input)), counter)
+            const output = selectionSort([...input], counter)
         }
-        const benchmark = analyzer.findTimeComplexity('n^2')
+        const benchmark = analyzer.findTimeComplexity('n^2',true)
         expect(benchmark.status).toBe('PASS')
     })
 })

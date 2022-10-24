@@ -1,6 +1,6 @@
 import ComplexityAnalyzer from '../index'
 
-const bubbleSort = (inputArr, counter = null) => {
+const bubbleSort = (inputArr:number[], counter?:() => void) => {
     const len = inputArr.length;
     for (let i = 0; i < len; i++) {
         for (let j = 0; j < len; j++) {
@@ -25,7 +25,7 @@ describe('Bubble Sort', () => {
         for (let i = 0; i <= iteration; i++) {
             analyzer.n = i
             const input = ComplexityAnalyzer.generateArray(i, 10, 99)
-            const output = bubbleSort(JSON.parse(JSON.stringify(input)), counter)
+            const output = bubbleSort([...input], counter)
         }
         const benchmark = analyzer.findTimeComplexity('n^2')
         expect(benchmark.status).toBe('PASS')
@@ -37,7 +37,7 @@ describe('Bubble Sort', () => {
         for (let i = 0; i <= iteration; i++) {
             analyzer.n = i
             const input = ComplexityAnalyzer.generateArray(i, 10, 99)
-            const output = bubbleSort(JSON.parse(JSON.stringify(input)), counter)
+            const output = bubbleSort([...input], counter)
         }
         const benchmark = analyzer.findTimeComplexity('n')
         expect(benchmark.status).toBe('FAIL')

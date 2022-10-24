@@ -1,6 +1,6 @@
 import ComplexityAnalyzer from '../index'
 
-function mergeSort(array, half = array.length / 2, counter = null) {
+function mergeSort(array:number[], half:number = array.length / 2, counter?:() => void) {
 
     if (array.length < 2) {
         return array
@@ -11,18 +11,21 @@ function mergeSort(array, half = array.length / 2, counter = null) {
     return merger(mergeSort(left), mergeSort(array), counter)
 }
 
-function merger(left, right, counter) {
+function merger(left:number[], right:number[], counter?:() => void) {
 
-    const arr = [];
+    const arr:number[] = [];
 
     while (left.length && right.length) {
+        let val:number|undefined=undefined
         if (counter)
             counter()
         if (left[0] < right[0]) {
-            arr.push(left.shift())
+            val=left.shift()
         } else {
-            arr.push(right.shift())
+            val=right.shift()
         }
+        if(val)
+            arr.push(val)
     }
 
     return [...arr, ...left, ...right];
